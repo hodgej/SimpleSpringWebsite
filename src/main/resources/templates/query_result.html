@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+
+    <p>Results for: </p>
+    <i><p th:text="${orig_query}"></p></i> <hr>
+
+    <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+
+        <tr th:each="item : ${items}">
+            <td th:text="${item.getFirstName()}"></td>
+            <td th:text="${item.getLastName()}"></td>
+        </tr>
+
+
+    </table>
+
+
+    <a href="/"><button>Go Back to Where you Came from</button></a>
+    <a href="/"><button>aol.com</button></a>
+</body>
+</html>
