@@ -1,14 +1,18 @@
 package com.jackhodge.DataViewTool.controller;
 
 
+import com.jackhodge.DataViewTool.DataViewToolApplication;
 import com.jackhodge.DataViewTool.model.Person;
+import com.jackhodge.DataViewTool.model.PostUpdateForm;
 import com.jackhodge.DataViewTool.service.AppendService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class AppendController {
@@ -20,10 +24,34 @@ public class AppendController {
         this.service = service;
     }
 
-    @RequestMapping("/append")
-    public String append(@RequestParam String firstName, @RequestParam String lastName){
-        service.addToDatabase(new Person(firstName, lastName));
-        return "redirect:/";
+
+    @RequestMapping("/updatehub")
+    public String updateHub(){
+        return "updatehub";
+    }
+
+    @PostMapping("/update")
+    public String append(@ModelAttribute PostUpdateForm form, Model model){
+        Logger log = LoggerFactory.getLogger(DataViewToolApplication.class);
+        log.info(form.toString());
+
+        Integer responseCode = 0;
+
+        // Insert new Person
+        if(form.selectupdatemethod.equals("insert")){
+            responseCode = service.addToDatabase(new Person(form.firstName, form.lastName));
+        } else { // Remove by...
+            if(form.deleteby.equals("fulln")) // remove by fullname
+                responseCode = service.removeFromDatabaseByFullName(form.firstName, form.lastName);
+            // Remove by Last Name
+            else responseCode = service.removeFromDatabaseByLastname(form.lastName);
+        }
+
+        String statusText = responseCode == 1 ?
+                            "Database Action Successful" : "Failed to complete action";
+
+        model.addAttribute("statusResponse", statusText);
+        return "updatehub";
     }
 
 

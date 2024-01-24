@@ -31,6 +31,10 @@ public class PopulateDatabase {
             repository.save(new Person("Jack", "Hodge"));
             repository.save(new Person("Miles", "Davis"));
             repository.save(new Person("Hellen", "Davis"));
+            repository.save(new Person("John", "Doe"));
+            repository.save(new Person("Johnny", "Doe"));
+            repository.save(new Person("Jennifer", "Doe"));
+            repository.save(new Person("Bill", "Doe"));
             repository.save(new Person("Parsons", "Project"));
 
             log.info("Default Data Inserted by PopulateDatabase Service: ");
@@ -40,7 +44,7 @@ public class PopulateDatabase {
             // implementaion which consumes a Consumer interface
 
             repository.findAll().forEach(person -> {
-                log.info(person.toString());
+                log.info("Database Added: " + person.toString());
             });
 
         };

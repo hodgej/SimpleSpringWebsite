@@ -32,16 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableJpaRepositories
 @Controller
 public class DataViewToolApplication {
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(DataViewToolApplication.class, args);
 	}
-
-	@GetMapping("/")
-	public String index() {
-		return "index";
-	}
-
-
 }

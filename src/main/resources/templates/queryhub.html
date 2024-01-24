@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="/loginform">Log In</a>
+            <a href="/queryhub">Query</a>
+            <a href="/queryhub">Update</a>
+            <a href="/query?query=*">View Contents</a>
+        </nav>
+        <h1>Query Database</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Search</h2>
+            <h3>By Last Name</h3>
+            <form action="/query" method="get" autocomplete="off">
+                <label for="query">Enter Data Query: </label>
+                <input type="text" id="query" name = "query" placeholder="Enter Last Name" autocomplete="off"><br>
+                <input type="submit" value = "Search...">
+
+            </form>
+            <h3>See Everything</h3>
+            <form action="/query" method="get" autocomplete="off">
+                <input type="hidden" id="query" name="query" value="*">
+                <input type="submit" value = "Show All Entries...">
+            </form>
+        </section>
+    </main>
+
+</body>
+</html>

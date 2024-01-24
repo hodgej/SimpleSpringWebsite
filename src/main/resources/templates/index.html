@@ -8,29 +8,28 @@
     <meta charset="UTF-8">
     <title>Data View Tool</title>
 </head>
+
 <body>
-    <h1>Data View Tool</h1>
-    <h2>Search</h2>
-    <h3>By Last Name</h3>
-    <form action="/query" method="get" autocomplete="off">
-        <label for="query">Enter Data Query: </label>
-        <input type="text" id="query" name = "query" placeholder="Enter Last Name" autocomplete="off"><br>
-        <input type="submit" value = "Search...">
 
-    </form>
-    <h3>See Everything</h3>
-    <form action="/query" method="get" autocomplete="off">
-        <input type="hidden" id="query" name="query" value="*">
-        <input type="submit" value = "Show All Entries...">
-    </form>
+    <header>
+        <nav>
+            <a href="/loginform">Log In</a>
+            <a href="/queryhub">Query</a>
+            <a href="/updatehub">Update</a>
+            <a href="/query?query=*">View Contents</a>
+        </nav>
+        <h1>Data View Tool</h1>
+    </header>
 
-    <h2>Insert</h2>
-    <form action="/append" method="pos" autocomplete="off">
-        <label for="firstName">Enter First Name</label>
-        <input type="text" id="firstName" name = "firstName" placeholder="Enter First Name" autocomplete="off"><br>
-        <label for="lastName">Enter Last Name </label>
-        <input type="text" id="lastName" name = "lastName" placeholder="Enter Last Name" autocomplete="off"><br>
-        <input type="submit" value = "Insert">
-    </form>
+<main>
+    <h2>Lorem Ipsum Lorem Ipsum</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <hr>
+    <h2>Lorem Ipsum Lorem Ipsum</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</main>
+
+
 </body>
 </html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>DataViewTool | Update</title>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="/loginform">Log In</a>
+        <a href="/queryhub">Query</a>
+        <a href="/queryhub">Update</a>
+        <a href="/query?query=*">View Contents</a>
+    </nav>
+    <h1>Update Database</h1>
+</header>
+
+    <main>
+
+        <section>
+            <h2>Modify Data</h2>
+            <p th:text="${statusResponse}"></p>
+            <form action="/update" method="post" autocomplete="off">
+                <select id="selectupdatemethod" name = "selectupdatemethod" onchange="toggleDeleteBy()">
+                    <option value="insert">Insert</option>
+                    <option value="delete">Delete by... </option>
+                </select>
+
+                <select id="deleteby" name = "deleteby" onchange="toggleLastName()" style="display: none;">
+                    <option value="fulln">Full Name</option>
+                    <option value="lastn">Last Name</option>
+                </select>
+
+                <hr>
+
+                <label for="firstName">Enter First Name</label>
+                <input type="text" id="firstName" name = "firstName" placeholder="Enter First Name" autocomplete="off"><br>
+                <label for="lastName">Enter Last Name </label>
+                <input type="text" id="lastName" name = "lastName" placeholder="Enter Last Name" autocomplete="off"><br>
+
+
+                <input type="submit" value = "Submit Update">
+            </form>
+            <button onclick="resetForm()">Reset Fields</button>
+        </section>
+    </main>
+
+</body>
+
+    <script>
+        function toggleDeleteBy() {
+            var selectdropdown = document.getElementById("selectupdatemethod");
+            var selectmenu = document.getElementById("deleteby");
+
+            var dropdownState = selectdropdown.value;
+            if (dropdownState === "delete") {
+                selectmenu.style.display = "inline";
+            } else {
+                selectmenu.style.display = "none";
+                selectmenu.value = "fulln";
+            }
+        }
+
+
+        function toggleLastName() {
+            var selectdropdown = document.getElementById("deleteby");
+            var textbox = document.getElementById("firstName");
+
+            var dropdownState = selectdropdown.value;
+            textbox.disabled = (dropdownState === "lastn");
+        }
+
+
+        function resetForm(){
+            document.getElementById("selectupdatemethod").value = "insert";
+            document.getElementById("firstName").value = "";
+            document.getElementById("lastName").value = "";
+            toggleDeleteBy();
+            toggleLastName();
+        }
+
+    </script>
+</html>

@@ -18,10 +18,17 @@ public class QueryController {
 
 
     QueryService service;
+
     // Autowire query service to be injected here
     @Autowired
     public QueryController(QueryService queryService){
         this.service = queryService;
+    }
+
+
+    @GetMapping("/queryhub")
+    public String queryHub(){
+        return "queryhub";
     }
 
     @GetMapping("/query")

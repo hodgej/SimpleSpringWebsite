@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>DataViewTool | Log In</title>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <a href="/">Home</a>
+            </nav>
+        </header>
+        <section>
+            <h1>Log In</h1>
+            <div th:if="${param.error}">
+                Invalid username and password.</div>
+
+            <form action="@{/login}" method="post">
+                <input type="text" name="username" id="username" placeholder="Username">
+                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="submit" value="Log In">
+            </form>
+        </section>
+
+    </body>
+
+
+</html>

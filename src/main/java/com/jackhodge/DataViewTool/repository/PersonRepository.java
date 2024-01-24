@@ -14,5 +14,10 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
     // derived query
     List<Person> findByLastName(String lastName);
 
+    long deleteByLastName(String lastName);
+    long deleteByFirstNameAndLastName(String firstName, String lastName);
+
+
+
     Person findById(long id);
 }

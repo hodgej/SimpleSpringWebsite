@@ -11,3 +11,10 @@ CREATE TABLE PERSON(
   FIRST_NAME VARCHAR(16) NOT NULL,
   LAST_NAME VARCHAR(16) NOT NULL
 );
+
+
+CREATE TABLE USERS(
+    username VARCHAR(50) NOT NULL primary key,
+    password VARCHAR(255) NOT NULL,
+    enabled bit not NULL
+)
