@@ -21,33 +21,46 @@
 </header>
 
     <main>
+        <div style="width: 100%; overflow: hidden;">
 
-        <section>
-            <h2>Modify Data</h2>
-            <p th:text="${statusResponse}"></p>
-            <form action="/update" method="post" autocomplete="off">
-                <select id="selectupdatemethod" name = "selectupdatemethod" onchange="toggleDeleteBy()">
-                    <option value="insert">Insert</option>
-                    <option value="delete">Delete by... </option>
-                </select>
+            <div style="width: 300px; float: left;">
 
-                <select id="deleteby" name = "deleteby" onchange="toggleLastName()" style="display: none;">
-                    <option value="fulln">Full Name</option>
-                    <option value="lastn">Last Name</option>
-                </select>
+                <section>
 
-                <hr>
+                    <i>
+                        <p style="color:yellow" th:text="${statusResponse}"></p>
+                    </i>
 
-                <label for="firstName">Enter First Name</label>
-                <input type="text" id="firstName" name = "firstName" placeholder="Enter First Name" autocomplete="off"><br>
-                <label for="lastName">Enter Last Name </label>
-                <input type="text" id="lastName" name = "lastName" placeholder="Enter Last Name" autocomplete="off"><br>
+                    <form action="/update" method="post" autocomplete="off">
+                        <select id="selectupdatemethod" name = "selectupdatemethod" onchange="toggleDeleteBy()">
+                            <option value="insert">Insert</option>
+                            <option value="delete">Delete by... </option>
+                        </select>
+
+                        <select id="deleteby" name = "deleteby" onchange="toggleLastName()" style="display: none;">
+                            <option value="fulln">Full Name</option>
+                            <option value="lastn">Last Name</option>
+                        </select>
+
+                        <hr>
+
+                        <label for="firstName">Enter First Name</label>
+                        <input type="text" id="firstName" name = "firstName" placeholder="Enter First Name" autocomplete="off"><br>
+                        <label for="lastName">Enter Last Name </label>
+                        <input type="text" id="lastName" name = "lastName" placeholder="Enter Last Name" autocomplete="off"><br>
 
 
-                <input type="submit" value = "Submit Update">
-            </form>
-            <button onclick="resetForm()">Reset Fields</button>
-        </section>
+                        <input type="submit" value = "Submit Update">
+                    </form>
+                    <button onclick="resetForm()">Reset Fields</button>
+                </section>
+            </div>
+
+            <div style="margin-left: 320px;">
+                <iframe src="/query?query=*&showui=false" style="display:block; width:100%; height:600px" frameborder="0"></iframe>
+            </div>
+
+        </div>
     </main>
 
 </body>

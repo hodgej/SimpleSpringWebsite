@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.management.Query;
 import java.util.ArrayList;
+import java.util.Optional;
 
 
 @Controller
@@ -32,10 +33,15 @@ public class QueryController {
     }
 
     @GetMapping("/query")
-    public String search(@RequestParam String query, Model model){
+    public String search(@RequestParam String query, @RequestParam Optional<String> showui, Model model){
         ArrayList<Person> queryResult = service.performSearch(query);
         model.addAttribute("items", queryResult);
         model.addAttribute("orig_query", query);
+
+        // Adjust UI based on request
+        if(showui.isPresent()){
+            model.addAttribute("ui_status", false);
+        } else model.addAttribute("ui_status", true);
 
         return "query_result";
     }
