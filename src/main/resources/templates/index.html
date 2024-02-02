@@ -3,6 +3,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+<style>
+    body > header{
+        background-color:black;
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -13,14 +18,20 @@
 
     <header>
         <nav>
+
+            <div style="display:flex; text-align: center; justify-content: center;" width=500px height=500px>
+                <a href="/"  ><img th:src="@{dataviewtool.png}" style="object-fit: cover;" width=100% height=100%></a>
+            </div>
+
+
+            <a href="/">Home</a>
             <a href="/loginform">Log In</a>
             <a href="/queryhub">Query</a>
             <a href="/updatehub">Update</a>
-            <a href="/query?query=*">View Contents</a>
+            <a href="/query?query=*">View All Truckloads</a>
         </nav>
-        <h1>Data View Tool</h1>
-    </header>
 
+    </header>
 <main>
     <h2>Lorem Ipsum Lorem Ipsum</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

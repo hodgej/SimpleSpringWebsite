@@ -1,7 +1,7 @@
 package com.jackhodge.DataViewTool.service;
 
-import com.jackhodge.DataViewTool.model.Person;
-import com.jackhodge.DataViewTool.repository.PersonRepository;
+import com.jackhodge.DataViewTool.model.Truckload;
+import com.jackhodge.DataViewTool.repository.TruckloadRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -9,18 +9,18 @@ import java.util.ArrayList;
 @Service
 public class QueryService {
 
-    PersonRepository repository;
+    TruckloadRepository repository;
 
-    public QueryService(PersonRepository repository){
+    public QueryService(TruckloadRepository repository){
         this.repository = repository;
     }
-    public ArrayList<Person> performSearch(String query){
-        ArrayList<Person> result = new ArrayList<>();
+    public ArrayList<Truckload> performSearch(String query){
+        ArrayList<Truckload> result = new ArrayList<>();
         // Business logic
         if(query.equals("*")){
             repository.findAll().forEach(result::add);
         } else {
-            result.addAll(repository.findByLastName(query));
+            result.addAll(repository.findBySource(query));
         }
         return result;
     }

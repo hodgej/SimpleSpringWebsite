@@ -1,25 +1,10 @@
 package com.jackhodge.DataViewTool;
 
-import com.jackhodge.DataViewTool.repository.PersonRepository;
-import com.jackhodge.DataViewTool.model.Person;
-
-import com.jackhodge.DataViewTool.service.PopulateDatabase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 
 
 // SpringBootApplication is a convienecnce tag which adds
@@ -28,6 +13,39 @@ import org.springframework.web.bind.annotation.RestController;
 //   ... , componentscan (find controllers)
 
 
+/*
+Spring is a container containing Objects which it manages
+Spring is responsible for creation of objects using a Factory Pattern.
+
+Object -> Factory -----> Configuration
+The developer typically specifies the Object, and if, for example, that object needs has-a object within,
+spring will call a factory to create it for you based on the configuration you might have supplied.
+
+Any object that is instantiated, managed, or assembled by the Spring IoC container is called a Bean.
+
+Controllers
+   -- Usually via the Spring MVC, they handle incoming HTTP requests
+Services
+   -- Used to define buisness logic
+Repositories
+   -- Used to encapuslate storage, retrieval, and search behavior. Emulates a collection of objects
+Components
+   -- Generic term: any managed object can be considered a componenet
+
+
+Configuration tips:
+@Configuration
+then,
+@Bean -- before a method to denote a method as repsponsible for creating the bean
+
+
+
+ApplicationcContext:
+
+
+
+
+ */
 @SpringBootApplication
 @EnableJpaRepositories
 @Controller

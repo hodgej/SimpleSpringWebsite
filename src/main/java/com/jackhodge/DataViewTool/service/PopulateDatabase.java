@@ -1,8 +1,8 @@
 package com.jackhodge.DataViewTool.service;
 
 import com.jackhodge.DataViewTool.DataViewToolApplication;
-import com.jackhodge.DataViewTool.model.Person;
-import com.jackhodge.DataViewTool.repository.PersonRepository;
+import com.jackhodge.DataViewTool.model.Truckload;
+import com.jackhodge.DataViewTool.repository.TruckloadRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PopulateDatabase {
-    PersonRepository repository;
+    TruckloadRepository repository;
 
     @Autowired
-    public PopulateDatabase(PersonRepository repository) {
+    public PopulateDatabase(TruckloadRepository repository) {
         this.repository = repository;
     }
 
@@ -25,17 +25,19 @@ public class PopulateDatabase {
     // this is a method returning an implementation of a CommandLineRunner that implements the "run" method
     // we RETURN a commandLineRunner
     // @Bean makes it run at start; registers the object returned by this method as a bean to be run at startup
+    /*
     @Bean
     public CommandLineRunner populate(){
         return (args) -> {
-            repository.save(new Person("Jack", "Hodge"));
-            repository.save(new Person("Miles", "Davis"));
-            repository.save(new Person("Hellen", "Davis"));
-            repository.save(new Person("John", "Doe"));
-            repository.save(new Person("Johnny", "Doe"));
-            repository.save(new Person("Jennifer", "Doe"));
-            repository.save(new Person("Bill", "Doe"));
-            repository.save(new Person("Parsons", "Project"));
+
+            repository.save(new Truckload("Jack", "Hodge"));
+            repository.save(new Truckload("Miles", "Davis"));
+            repository.save(new Truckload("Hellen", "Davis"));
+            repository.save(new Truckload("John", "Doe"));
+            repository.save(new Truckload("Johnny", "Doe"));
+            repository.save(new Truckload("Jennifer", "Doe"));
+            repository.save(new Truckload("Bill", "Doe"));
+            repository.save(new Truckload("Parsons", "Project"));
 
             log.info("Default Data Inserted by PopulateDatabase Service: ");
 
@@ -49,4 +51,5 @@ public class PopulateDatabase {
 
         };
     }
+    */
 }

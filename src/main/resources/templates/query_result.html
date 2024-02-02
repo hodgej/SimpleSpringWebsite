@@ -1,37 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    <style>
+        body > header{
+            background-color:black;
+        }
+    </style>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Results</title>
-</head>
-    <body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Search Results</title>
+    </head>
 
+    <div>
         <div name="ui_title" th:if="${ui_status}">
-            <p>Results for: </p>
-            <i><p th:text="${orig_query}"></p></i> <hr>
+            <h2>Results for: </h2>
+            <i><h3 th:text="${orig_query}" th:if="${ui_status}" ></h3></i>
+
+            <hr>
         </div>
 
         <table>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Truckload ID</th>
+                <th>Source</th>
+                <th>Dest.</th>
+                <th>Carrier Name</th>
+                <th>Carrier ID</th>
             </tr>
 
             <tr th:each="item : ${items}">
-                <td th:text="${item.getFirstName()}"></td>
-                <td th:text="${item.getLastName()}"></td>
+                <td th:text="${item.getId()}"></td>
+                <td th:text="${item.getSource()}"></td>
+                <td th:text="${item.getDestination()}"></td>
+                <td th:text="${item.getCarrier().getName()}"></td>
+                <td th:text="${item.getCarrier().getId()}"></td>
             </tr>
 
 
         </table>
 
         <div name="ui_buttons" th:if="${ui_status}">
-            <a href="/"><button>Go Back to Where you Came from</button></a>
-            <a href="/"><button>aol.com</button></a>
+            <a href="/"><button>Back</button></a>
+            <a href="/"><button>Home</button></a>
         </div>
+    </div>
 
-    </body>
+
 </html>
