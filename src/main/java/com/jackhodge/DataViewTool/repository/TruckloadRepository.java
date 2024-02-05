@@ -18,6 +18,8 @@ public interface TruckloadRepository extends CrudRepository<Truckload, Long> {
     @Transactional
     long deleteByDestination(String destination);
     @Transactional
+    long deleteBySource(String source);
+    @Transactional
     long deleteBySourceAndDestination(String source, String destination);
 
     Truckload findById(long id);

@@ -10,6 +10,7 @@ import com.jackhodge.DataViewTool.repository.TruckloadRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,27 +36,33 @@ public class TruckloadAppendService {
 
         // Insert new Truckload
         if(form.getSelectUpdateMethod().equals("insert")){
-
-            Optional<Carrier> associatedCarrierObject = Optional.of(carrierRepository.findCarrierByCarrierid(form.getCarrierid()));
-
-            // TODO: Crashes if Carrier object not found
-            if(associatedCarrierObject.isPresent()) {
-                responseCode = addToDatabase(new Truckload(form.getSource(), form.getDestination(), associatedCarrierObject.get()));
-
-            } else {
-                responseDetails += "Error: No Such Carrier with carrierid" + form.getCarrierid() + " found. ";
+            try {
+                Carrier foundCarrier = carrierRepository.findCarrierByCarrierid(form.getCarrierid());
+                if (foundCarrier != null) {
+                    Optional<Carrier> associatedCarrierObject = Optional.of(foundCarrier);
+                    Truckload truckloadObject = new Truckload(form.getSource(), form.getDestination(), associatedCarrierObject.get());
+                    responseCode = addToDatabase(truckloadObject);
+                } else {
+                    responseDetails += "Warning: No Such Carrier with carrierid" + form.getCarrierid() + " found. ";
+                }
             }
-
+            catch (DataAccessException e){
+                responseDetails += "DataAccessException Error: Truckload With Carrier ID " + form.getCarrierid() + ". Error log: " + e;
+                }
         } else { // Remove by...
-            if(form.getDeleteby().equals("fullroute"))
-                responseCode = removeFromDatabaseBySourceAndDestination(form.getSource(), form.getDestination());
-                // Remove by source
-            else responseCode = removeFromDatabaseByDestination(form.getDestination());
+            String deleteBy = form.getDeleteby();
+            responseCode = switch (deleteBy) {
+                case "fullroute" -> removeFromDatabaseBySourceAndDestination(form.getSource(), form.getDestination());
+                case "destination" -> removeFromDatabaseByDestination(form.getDestination());
+                case "source" -> removeFromDatabaseBySource(form.getSource());
+                default -> responseCode;
+            };
         }
 
         String statusText = responseCode == 1 ?
                 "Database Action Successful. " : "Error: Failed to complete action. " + responseDetails;
 
+        log.info(statusText);
         return statusText;
     }
 
@@ -77,6 +84,13 @@ public class TruckloadAppendService {
     @Transactional
     public int removeFromDatabaseBySourceAndDestination(String source, String destination){
         long responseCode = truckloadRepository.deleteBySourceAndDestination(source, destination);
+        return responseCode > 0 ? 1 : 0;
+    }
+
+
+    @Transactional
+    public int removeFromDatabaseBySource(String source){
+        long responseCode = truckloadRepository.deleteBySource(source);
         return responseCode > 0 ? 1 : 0;
     }
 

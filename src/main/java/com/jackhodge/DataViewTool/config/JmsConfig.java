@@ -47,4 +47,16 @@ public class JmsConfig {
         converter.setObjectMapper(new ObjectMapper());
         return converter;
     }
+
+
+
+    @Service
+    public class JMSErrorHandler implements ErrorHandler {
+        @Override
+        public void handleError(Throwable t){
+            logger.error("Error in listener ", t);
+        }
+    }
+
+
 }

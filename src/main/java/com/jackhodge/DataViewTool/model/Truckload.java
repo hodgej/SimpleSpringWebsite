@@ -48,9 +48,9 @@ public class Truckload {
     }
 
     // Constructor used to create Person instances to be saved to the database
-    public Truckload(String firstName, String lastName, Carrier carrier) {
-        this.source = firstName;
-        this.destination = lastName;
+    public Truckload(String source, String destination, Carrier carrier) {
+        this.source = source;
+        this.destination = destination;
         this.carrier = carrier;
     }
 
