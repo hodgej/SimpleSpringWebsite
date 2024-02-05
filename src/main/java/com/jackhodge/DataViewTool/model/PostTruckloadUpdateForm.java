@@ -1,18 +1,23 @@
 package com.jackhodge.DataViewTool.model;
 
+
+import java.util.Objects;
+
 public class PostTruckloadUpdateForm {
-    public String selectupdatemethod;
+
+    public String selectUpdateMethod;
     public String deleteby;
-
     public String source;
-
     public String destination;
-
     public Long carrierid;
 
+    private boolean valid;
 
-    public String getSelectupdatemethod() {
-        return selectupdatemethod;
+    public PostTruckloadUpdateForm() {
+    }
+
+    public String getSelectUpdateMethod() {
+        return selectUpdateMethod;
     }
 
     public String getDeleteby() {
@@ -32,8 +37,8 @@ public class PostTruckloadUpdateForm {
         return carrierid;
     }
 
-    public void setSelectupdatemethod(String selectupdatemethod) {
-        this.selectupdatemethod = selectupdatemethod;
+    public void setSelectUpdateMethod(String selectUpdateMethod) {
+        this.selectUpdateMethod = selectUpdateMethod;
     }
 
     public void setDeleteby(String deleteby) {
@@ -53,10 +58,20 @@ public class PostTruckloadUpdateForm {
         this.carrierid = carrierid;
     }
 
+
+    public boolean isValid(){
+        // TODO: Make not dumb
+        if(Objects.equals(selectUpdateMethod, "insert")) {
+            return (selectUpdateMethod != null) && (deleteby != null) && (source != null) && (destination != null) && (carrierid != null);
+        } else {
+            return (selectUpdateMethod != null) && ((deleteby != null) || (source != null) || (destination != null) || (carrierid != null));
+        }
+    }
+
     @Override
     public String toString() {
         return "PostTruckloadUpdateForm{" +
-                "selectupdatemethod='" + selectupdatemethod + '\'' +
+                "selectupdatemethod='" + selectUpdateMethod + '\'' +
                 ", deleteby='" + deleteby + '\'' +
                 ", source='" + source + '\'' +
                 ", destination='" + destination + '\'' +

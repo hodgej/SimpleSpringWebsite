@@ -15,17 +15,36 @@ import org.springframework.jms.support.converter.MessageType;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.ErrorHandler;
+import org.springframework.validation.ObjectError;
 
-/*
+
 @Configuration
 @EnableJms
 public class JmsConfig {
+    Logger logger = LoggerFactory.getLogger(JmsConfig.class);
+
     public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(
             ConnectionFactory connecionFactory,
             DefaultJmsListenerContainerFactoryConfigurer configurer
     ){
+        DefaultJmsListenerContainerFactory listenerContainerFactory = new DefaultJmsListenerContainerFactory();
+        listenerContainerFactory.setConnectionFactory(connecionFactory);
+        listenerContainerFactory.setConcurrency("1");
+        listenerContainerFactory.setErrorHandler(
+                t -> {logger.error("Listener Error: ", t);
+                });
+        listenerContainerFactory.setMessageConverter(this.jacksonJmsMessageConverter());
 
+        return listenerContainerFactory;
 
+    } 
+
+    @Bean
+    public MessageConverter jacksonJmsMessageConverter(){
+        MappingJackson2MessageConverter converter = new MappingJackson2MessageConverter();
+        converter.setTargetType(MessageType.TEXT);
+        converter.setTypeIdPropertyName("_type");
+        converter.setObjectMapper(new ObjectMapper());
+        return converter;
     }
 }
-*/

@@ -41,7 +41,7 @@
                     </i>
 
                     <form action="/update" method="post" autocomplete="off">
-                        <select id="selectUpdateMethod" name = "selectUpdateMethod" onchange="toggleDeleteBy()">
+                        <select id="selectupdatemethod" name = "selectUpdateMethod" onchange="toggleDeleteBy()">
                             <option value="insert">Insert</option>
                             <option value="delete">Delete by... </option>
                         </select>
@@ -76,7 +76,7 @@
 
     <script>
         function toggleDeleteBy() {
-            var selectdropdown = document.getElementById("selectUpdateMethod");
+            var selectdropdown = document.getElementById("selectupdatemethod");
             var selectmenu = document.getElementById("deleteby");
 
             var dropdownState = selectdropdown.value;

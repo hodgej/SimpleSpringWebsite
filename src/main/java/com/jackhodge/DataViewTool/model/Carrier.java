@@ -11,7 +11,6 @@ public class Carrier {
 
     private String name;
 
-
     public Carrier(String name) {
         this.name = name;
     }
